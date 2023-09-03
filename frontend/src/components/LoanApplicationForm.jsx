@@ -11,9 +11,15 @@ const LoanApplicationForm = () => {
   const [businessEmail, setBusinessEmail] = useState("")
   const [loanAmount, setLoanAmount] = useState("")
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    console.log(businessName)
+  }
+
   return (
-    <form>
-      <h1>Loan Application Form</h1>
+    <form onSubmit={handleSubmit}>
+      <h2>Enter Business Details</h2>
       <div>
         <input
           required
@@ -90,6 +96,7 @@ const LoanApplicationForm = () => {
         <input
           required
           placeholder="Loan Amount"
+          type="number"
           value={loanAmount}
           onChange={({ target }) => setLoanAmount(target.value)}
         />
