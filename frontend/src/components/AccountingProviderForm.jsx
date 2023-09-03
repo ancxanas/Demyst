@@ -1,15 +1,34 @@
+import { useNavigate } from "react-router-dom"
+
 const AccountingProviderForm = () => {
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(e.target.accounting_provider.value)
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h2>Select an Accounting Provider</h2>
       <div>
-        <input type="radio" id="xero" name="accounting_provider" value="xero" />
-        <label htmlFor="xero">Xero</label>
+        <label>
+          <input
+            type="radio"
+            name="accounting_provider"
+            value="Xero"
+            defaultChecked
+          />
+          Xero
+        </label>
       </div>
       <div>
-        <input type="radio" id="myob" name="accounting_provider" value="myob" />
-        <label htmlFor="myob">MYOB</label>
+        <label>
+          <input type="radio" name="accounting_provider" value="MYOB" />
+          MYOB
+        </label>
       </div>
+      <button onClick={() => navigate("/business_details")}>Back</button>
       <button type="submit">Request Balance Sheet</button>
     </form>
   )
