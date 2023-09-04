@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { getBalanceSheet } from "../services/balanceSheet"
+import { getBalanceSheet } from "../service"
 
 const loanSlice = createSlice({
   name: "loan",
