@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { getBalanceSheet } from "../service"
+import { getBalanceSheet, getDecision } from "../service"
 
 const loanSlice = createSlice({
   name: "loan",
@@ -8,15 +8,25 @@ const loanSlice = createSlice({
     appendDetails(state, action) {
       state.push(action.payload)
     },
+    appendDecision(state, action) {
+      state.push(action.payload)
+    },
   },
 })
 
-export const { appendDetails } = loanSlice.actions
+export const { appendDetails, appendDecision } = loanSlice.actions
 
 export const getReviewDetails = (businessDetails) => {
   return async (dispatch) => {
     const reviewDetails = await getBalanceSheet(businessDetails)
     dispatch(appendDetails(reviewDetails))
+  }
+}
+
+export const getLoanDecision = () => {
+  return async (dispatch) => {
+    const loanDecision = await getDecision()
+    dispatch(appendDecision(loanDecision))
   }
 }
 
