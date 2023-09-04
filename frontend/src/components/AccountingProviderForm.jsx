@@ -1,11 +1,44 @@
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { getReviewDetails } from "../reducers/loanReducer"
 
 const AccountingProviderForm = () => {
+  const dispatch = useDispatch()
+
   const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(e.target.accounting_provider.value)
+
+    const businessName = sessionStorage.getItem("businessName")
+    const businessEstablishedYear = sessionStorage.getItem(
+      "businessEstablishedYear"
+    )
+    const businessType = sessionStorage.getItem("businessType")
+    const businessAddress = sessionStorage.getItem("businessAddress")
+    const businessCity = sessionStorage.getItem("businessCity")
+    const businessState = sessionStorage.getItem("businessState")
+    const businessPhone = sessionStorage.getItem("businessPhone")
+    const businessEmail = sessionStorage.getItem("businessEmail")
+    const loanAmount = sessionStorage.getItem("loanAmount")
+    const accountingProvider = e.target.accounting_provider.value
+
+    const businessDetails = {
+      business_name: businessName,
+      business_type: businessType,
+      business_established_year: businessEstablishedYear,
+      business_address: businessAddress,
+      business_city: businessCity,
+      business_state: businessState,
+      business_phone: businessPhone,
+      business_email: businessEmail,
+      loan_amount: loanAmount,
+      accounting_provider: accountingProvider,
+    }
+
+    dispatch(getReviewDetails(businessDetails))
+
+    navigate("/review_details")
   }
 
   return (
