@@ -130,9 +130,10 @@ const LoanApplicationForm = () => {
       <div>
         <input
           required
-          placeholder="Business Phone"
+          placeholder="1234567890"
           type="tel"
           value={businessPhone}
+          pattern="[0-9]{10}"
           onChange={({ target }) => setBusinessPhone(target.value)}
         />
       </div>
